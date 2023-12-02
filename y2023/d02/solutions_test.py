@@ -17,7 +17,7 @@ def solve_1 (lines):
             if int(vals.get("blue", "0")) > 14:
                 possible = False
         if possible:
-            r = r + i + 1
+            r += (i + 1)
     return r
 
 def solve_2 (lines):
@@ -34,25 +34,6 @@ def solve_2 (lines):
         power = nbs["red"] * nbs["blue"] * nbs["green"] 
         r += power
     return r
-
-# ------------
-
-class MyTests(unittest.TestCase):
-    def test_1(self):
-        s = """Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"""
-        assert solve_1(s.split("\n")) == 8
-
-    def test_power(self):
-        s = """Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"""
-        assert solve_2(s.split("\n")) == 2286
 
 
 if __name__=="__main__":
@@ -73,3 +54,21 @@ if __name__=="__main__":
         if os.path.exists(input_1):
             with open (input_1) as f:
                 print (solve_1(f))
+
+# ------------
+
+def test_1():
+    s = """Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"""
+    assert solve_1(s.split("\n")) == 8
+
+def test_power():
+    s = """Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"""
+    assert solve_2(s.split("\n")) == 2286
