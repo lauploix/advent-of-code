@@ -2,17 +2,14 @@ import unittest
 
 def solve_1 (lines):
     lines = list(lines)
-    assert len(lines) == 100
     r = 0
     for i, game in enumerate(lines):
-        print (i+1, game)
         possible = True
         draws = game.split(":")[1].split (";")
         for draw in draws:
             balls = [d.strip().split() for d in draw.split (",")]
             balls = [b[::-1] for b in balls]
             vals = dict(balls)
-            print (vals)
             if int(vals.get("red", "0")) > 12:
                 possible = False
             if int(vals.get("green", "0")) > 13:
@@ -21,8 +18,6 @@ def solve_1 (lines):
                 possible = False
         if possible:
             r = r + i + 1
-            print(r)
-    print (r)
     return r
 
 def solve_2 (lines):
@@ -30,7 +25,6 @@ def solve_2 (lines):
     lines = list(lines)
     for game in lines:
         nbs = {"red": 0, "blue": 0, "green": 0}
-        print (game)
         draws = game.split(":")[1].split (";")
         for draw in draws:
             balls = [d.strip().split() for d in draw.split (",")]
@@ -38,9 +32,10 @@ def solve_2 (lines):
             for k in nbs:
                 nbs[k] = max (nbs[k], vals.get(k, 0))
         power = nbs["red"] * nbs["blue"] * nbs["green"] 
-        print(power)
         r += power
     return r
+
+# ------------
 
 class MyTests(unittest.TestCase):
     def test_1(self):
@@ -63,12 +58,18 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"""
 if __name__=="__main__":
     import os
     d = os.path.split(__file__)[0]
+    input_txt = os.path.join (d, "input.txt")
     input_1 = os.path.join (d, "input1.txt")
     input_2 = os.path.join (d, "input2.txt")
-    if os.path.exists(input_2):
+    if os.path.exists(input_txt):
+        with open (input_txt) as f:
+            print (solve_1(f))
+        with open (input_txt) as f:
+            print (solve_2(f))
+    elif os.path.exists(input_2):
         with open (input_2) as f:
             print (solve_2(f))
-    else:
+    elif os.path.exists(input_1):
         if os.path.exists(input_1):
             with open (input_1) as f:
                 print (solve_1(f))
