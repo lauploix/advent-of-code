@@ -1,0 +1,14 @@
+{
+    "python.testing.pytestArgs": [
+        "2023"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./2023",
+        "-p",
+        "*_test.py"
+    ],
+    "python.testing.unittestEnabled": true
+}
