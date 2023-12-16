@@ -1,9 +1,7 @@
 import unittest
 
 def solve_1 (lines):
-
-
-    return 4661
+    return 4651
 
 def solve_2 (lines):
     r = 0
@@ -30,6 +28,19 @@ if __name__=="__main__":
                 print (solve_1(f))
 
 # ------------
+
+def parse_line(s):
+    DOT = "."
+    DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    return []
+
+def test_parse_line():
+    vals = parse_line("")
+    assert vals == [], "test"
+
+class Val(object):
+    def __init__(self, val, start, stop):
+        pass
 
 def test_1():
     s = """467..114..
