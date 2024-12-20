@@ -10,10 +10,33 @@ input_2 = os.path.join (d, "input2.txt")
 
 def solve_1 (f):
     import re
-    
+    res = 0
+    for l in f:
+        mults = re.findall (r'mul\((\d+)\,(\d+)\)', l)
+        for (sa, sb) in mults:
+            a = int (sa)
+            b = int(sb)
+            res += a*b
+    return res
 
 def solve_2 (f):
-    pass
+    import re
+    res = 0
+    doit = True
+    for l in f:
+        mults = re.findall (r"(do)\(\)|(don\'t)\(\)|mul\((\d+)\,(\d+)\)", l)
+        for (do, dont, sa, sb) in mults:
+            if dont: 
+                doit = False
+                continue
+            if do: 
+                doit = True
+                continue
+            if doit:
+                a = int (sa)
+                b = int(sb)
+                res += a*b
+    return res
 
 if __name__=="__main__":
     if os.path.exists(input_txt): #If thsi is the same input for both
